@@ -1,0 +1,108 @@
+/* ===============================
+   Body & Container
+=============================== */
+body {
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    padding: 1.5rem;
+}
+
+/* ===============================
+   Flash Messages
+=============================== */
+.alert {
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* ===============================
+   Upload Form Card
+=============================== */
+.card {
+    border-radius: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* ensures uniform card height in the grid */
+}
+
+.card h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+/* ===============================
+   Gallery Grid
+=============================== */
+.card-img-top {
+    width: 100%;            /* full card width */
+    max-height: 200px;      /* optional max height for uniformity */
+    object-fit: contain;     /* show full image without cropping */
+    border-radius: 0.35rem 0.35rem 0 0;
+    transition: transform 0.3s ease;
+    background-color: #f8f9fa; /* optional: light background for empty spaces */
+}
+
+/* Hover effect on images */
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* Card body */
+.card-body {
+    padding: 0.5rem 0.75rem;
+}
+
+.card-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Delete button */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Shadow effect */
+.shadow-sm {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+}
+
+/* ===============================
+   Responsive Grid
+=============================== */
+@media (max-width: 768px) {
+    .card-img-top {
+        max-height: 150px;
+    }
+    .card-title {
+        font-size: 0.8rem;
+    }
+}
+
+/* ===============================
+   Gallery Grid Layout
+=============================== */
+.row.g-3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.col-md-3 {
+    flex: 0 0 23%; /* 4 per row with gap */
+}
+
+@media (max-width: 992px) { .col-md-3 { flex: 0 0 31%; } } /* 3 per row */
+@media (max-width: 768px) { .col-md-3 { flex: 0 0 48%; } }  /* 2 per row */
+@media (max-width: 576px) { .col-md-3 { flex: 0 0 100%; } } /* 1 per row */

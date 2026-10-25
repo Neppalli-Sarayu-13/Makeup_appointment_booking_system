@@ -1,0 +1,51 @@
+{% extends "user_base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="hero-section">
+
+    <div class="hero-left">
+        <div class="hero-content">
+            <h1>Enhance Your Beauty</h1>
+            <p>Book your perfect makeup artist for every special occasion</p>
+
+            <a href="{{ url_for('user_services') }}">
+                <button class="book-btn">Book Now</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <div class="slider">
+            <img src="{{ url_for('static', filename='images/hdmakeup.jpeg') }}" class="slide active">
+            <img src="{{ url_for('static', filename='images/hairstyling.jpeg') }}" class="slide">
+            <img src="{{ url_for('static', filename='images/engagementmakeup.jpeg') }}" class="slide">
+        </div>
+    </div>
+
+</div>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide() {
+    slides.forEach((slide) => {
+        slide.classList.remove("active");
+    });
+
+    index++;
+    if (index >= slides.length) {
+        index = 0;
+    }
+
+    slides[index].classList.add("active");
+}
+
+setInterval(showSlide, 3000);
+</script>
+
+{% endblock %}

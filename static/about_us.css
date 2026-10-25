@@ -1,0 +1,102 @@
+/* HEADER */
+.about-header {
+    text-align: center;
+    background: #ffe4ec;
+}
+
+.about-header h1 {
+    font-size: 40px;
+    color: #d63384;
+}
+
+.about-header p {
+    font-size: 18px;
+}
+
+/* ABOUT SECTION */
+.about-container {
+    padding: 50px;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 25%;
+}
+
+.about-image img {
+    width: 350px;
+    height: 400px;
+    object-fit: cover; /* full image without distortion */
+    border-radius: 15px;
+}
+
+.about-text {
+    max-width: 500px;
+    text-align: center;
+}
+
+/* SERVICES */
+.services-section {
+    padding: 50px;
+    text-align: center;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    width: 220px;
+    padding: 20px;
+    background: #fff0f5;
+    border-radius: 10px;
+}
+
+/* WHY US */
+.why-us {
+    padding: 50px;
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.why-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.why-card {
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    width: 200px;
+}
+
+/* REVIEWS */
+.reviews-section {
+    padding: 50px;
+    text-align: center;
+}
+
+.reviews-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.review-card {
+    width: 250px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

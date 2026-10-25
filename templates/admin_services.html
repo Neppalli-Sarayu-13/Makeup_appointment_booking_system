@@ -1,0 +1,92 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Admin Services - Lakshmi Makeovers{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_services.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container my-4">
+    <div class="heading">
+        <h2 class="mb-4">Manage Services</h2>
+        <a href="{{url_for('admin_dashboard')}}" class="btn btn-secondary">Dashboard</a>
+    </div>
+    <!-- Add New Service -->
+    <div class="card p-3 mb-4 shadow-sm">
+        <h5>Add New Service</h5>
+        <form method="POST" enctype="multipart/form-data" class="row g-3">
+            <div class="col-md-4">
+                <input type="text" name="service_name" class="form-control" placeholder="Service Name" required>
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="description" class="form-control" placeholder="Description" required>
+            </div>
+            <div class="col-md-2">
+                <input type="number" step="0.01" name="price" class="form-control" placeholder="Price" required>
+            </div>
+            <div class="col-md-2">
+                <input type="text" name="duration" class="form-control" placeholder="Duration" required>
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="category" class="form-control" placeholder="Category">
+            </div>
+            <div class="col-md-4">
+                <input type="file" name="image" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary w-100" type="submit">Add Service</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Existing Services -->
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card service-card shadow-sm mb-3">
+                {% if service.image %}
+                <img src="{{ url_for('static', filename='uploads/' ~ service.image) }}" class="card-img-top" alt="{{ service.service_name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5>{{ service.service_name }}</h5>
+                    <p>{{ service.description }}</p>
+                    <p><strong>Price:</strong> ₹{{ service.price }}</p>
+                    <p><strong>Duration:</strong> {{ service.duration }}</p>
+                    <p><strong>Category:</strong> {{ service.category }}</p>
+                    <a href="{{ url_for('edit_service', service_id=service.service_id) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ url_for('delete_service', service_id=service.service_id) }}" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+    <div class="card p-3 mb-4 shadow-sm">
+        <h1 class="display-5 fw-bold">Our Services</h1>
+        <p class="lead">
+            From bridal to party looks, we offer a range of professional makeup and hairstyling services.
+        </p>
+    </div>
+    <div class="row">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card service-card shadow-sm mb-3">
+                {% if service.image %}
+                <img src="{{ url_for('static', filename='uploads/' ~ service.image) }}" class="card-img-top" alt="{{ service.service_name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5>{{ service.service_name }}</h5>
+                    <p>{{ service.description }}</p>
+                    <p><strong>Price:</strong> ₹{{ service.price }}</p>
+                    <p><strong>Duration:</strong> {{ service.duration }}</p>
+                    <p><strong>Category:</strong> {{ service.category }}</p>
+                    <a href="#" class="btn btn-pink text-white">Book Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}  
+

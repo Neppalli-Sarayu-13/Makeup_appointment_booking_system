@@ -1,0 +1,23 @@
+{% extends "user_base.html" %}
+{% block title %}Update Booking{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Update Booking</h2>
+    <form method="POST">
+        <label>Date:</label>
+        <input type="date" name="booking_date" value="{{ booking.booking_date }}" required>
+
+        <label>Time:</label>
+        <input type="time" name="booking_time" value="{{ booking.booking_time }}" required>
+
+        <label>Venue:</label>
+        <input type="text" name="venue" value="{{ booking.venue }}" required>
+
+        <label>Notes:</label>
+        <textarea name="notes">{{ booking.notes }}</textarea>
+
+        <button type="submit" class="btn-save">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

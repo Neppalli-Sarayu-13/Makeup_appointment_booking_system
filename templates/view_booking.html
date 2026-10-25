@@ -1,0 +1,55 @@
+{% extends "user_base.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='view_booking.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>My Bookings</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+        <div class="flash">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <table class="bookings-table">
+        <thead>
+            <tr>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking[4] }}</td>
+                <td>{{ booking[6] }}</td>
+                <td>{{ booking[7]}}</td>
+                <td>{{ booking[8] }}</td>
+                <td>{{ booking[13] }}</td>
+                <td>
+                    <a href="{{ url_for('update_booking', booking_id=booking[0]) }}" class="btn-update">Update</a>
+                    {% if booking.status == 'Pending' %}
+                    <form action="{{ url_for('cancel_booking', booking_id=booking[[0]]) }}" method="POST" style="display:inline;" onsubmit="return confirmCancel()">
+                        <button type="submit" class="btn-cancel">Cancel</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+function confirmCancel() {
+    return confirm("Are you sure you want to cancel this booking?");
+}
+</script>
+{% endblock %}

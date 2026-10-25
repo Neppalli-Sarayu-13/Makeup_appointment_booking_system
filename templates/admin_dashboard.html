@@ -1,0 +1,146 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Admin Dashboard - Lakshmi Makeovers{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card card-stats p-3 shadow-sm">
+                <h6>Total Bookings</h6>
+                <h3 id="totalBookings">{{ total_bookings['count(*)'] }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card card-stats p-3 shadow-sm">
+                <h6>Pending Appointments</h6>
+                <h3 id="pendingAppointments">{{ pending_appointments['count(*)'] }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card card-stats p-3 shadow-sm">
+                <h6>Approved Appointments</h6>
+                <h3 id="completedAppointments">{{ approved_appointments['count(*)'] }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card card-stats p-3 shadow-sm">
+                <h6>Total Users</h6>
+                <h3 id="totalUsers">{{ total_users['count(*)'] }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Appointments Table -->
+    <div class="row g-4 mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm p-3">
+                <h5>Pending Appointments</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Payment Method</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in appointments %}
+                            <tr>
+                                <td>{{ a.booking_id }}</td>
+                                <td>{{ a.customer_name }}</td>
+                                <td>{{ a.customer_email }}</td>
+                                <td>{{ a.customer_phone }}</td>
+                                <td>{{ a.service_name }}</td>
+                                <td>{{ a.booking_date }}</td>
+                                <td>{{ a.booking_time }}</td>
+                                <td>{{ a.payment_method }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('approve_appointment', booking_id=a.booking_id) }}" style="display:inline-block;">
+                                        <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                    </form>
+                                    <form method="POST" action="{{ url_for('cancel_appointment', booking_id=a.booking_id) }}" style="display:inline-block;">
+                                        <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Bookings Table -->
+    <div class="row g-4 mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm p-3">
+                <h5>Recent Bookings</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>Customer</th>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for b in recent_bookings %}
+                            <tr>
+                                <td>{{ b.booking_id }}</td>
+                                <td>{{ b.customer_name }}</td>
+                                <td>{{ b.service_name }}</td>
+                                <td>{{ b.booking_date }}</td>
+                                <td>{{ b.booking_time }}</td>
+                                <td>{{ b.status }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('delete_booking', booking_id=b.booking_id) }}" style="display:inline-block;">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+{% endblock %}

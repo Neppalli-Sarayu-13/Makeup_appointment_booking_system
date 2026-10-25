@@ -1,0 +1,53 @@
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("./images/otpverifybg.jpg");
+    background-size: cover;
+    background-position: center;
+
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.otp-container{
+    background: rgba(255,255,255,0.9);
+    padding:40px;
+    border-radius:10px;
+    text-align:center;
+    width:350px;
+}
+
+.otp-container h2{
+    margin-bottom:10px;
+}
+
+.otp-container input{
+    width:100%;
+    padding:12px;
+    margin:20px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.otp-container button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.otp-container button:hover{
+    background:#e63950;
+}
+
+.resend{
+    margin-top:15px;
+}

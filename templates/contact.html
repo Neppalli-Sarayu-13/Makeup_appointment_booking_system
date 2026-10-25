@@ -1,0 +1,36 @@
+{% extends "user_base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="contact-page">
+    <h2>Contact Us</h2>
+
+    <!-- Admin Details -->
+    <div class="admin-details">
+        <h3>Admin Contact Information</h3>
+        <p><strong>Name:</strong> Lakshmi Neppalli</p>
+        <p><strong>Email:</strong> lakshmineppalli1983@gmail.com</p>
+        <p><strong>Phone:</strong> +91 9394295467</p>
+        <p><strong>Address:</strong> 0 line, 2nd Ln, near water tank, Srinagar, Satyaranayana Puram, Vijayawada, Andhra Pradesh 520004</p>
+    </div>
+
+    <hr>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <h3>Send us a Message</h3>
+        <form method="POST" action="{{ url_for('contact') }}">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

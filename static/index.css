@@ -1,0 +1,83 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url(./images/hero-bg.jpg) center/cover no-repeat;
+}
+
+/* Navbar logo as circle */
+.navbar-brand .logo {
+    height: 50px;            /* Adjust size */
+    width: 50px;             /* Keep it square to form a circle */
+    object-fit: cover;       /* Ensure image scales correctly */
+    border-radius: 50%;      /* Makes it circular */
+    border: 2px solid #FFD700; /* Optional: gold border for luxury */
+}
+
+/* Optional: Adjust spacing */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.btn-rosegold {
+    background: linear-gradient(135deg, #d63384, #d4a373);
+    border: none;
+    color: white;
+}
+
+.btn-rosegold:hover {
+    opacity: 0.9;
+}
+
+.bg-soft {
+    background: linear-gradient(180deg, #f8e1e7, #fdf6f0);
+}
+
+.service-card {
+    transition: 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.price {
+    font-weight: bold;
+    color: #d63384;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, #d63384, #d4a373);
+}
+
+/* Light pink background for Book Now button */
+.booknow-btn {
+    background-color: #ffb6c1; /* light pink */
+    border: 1px solid #ffb6c1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.booknow-btn:hover {
+    background-color: #ff99aa; /* slightly darker pink on hover */
+    color: #fff;
+}
+
+/* Outline style for Login button */
+.login-btn {
+    border-color: #ffb6c1; /* light pink border */
+    color: #ffb6c1;
+}
+
+.login-btn:hover {
+    background-color: #ffb6c1;
+    color: white;
+}

@@ -1,0 +1,24 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+.btn-pink {
+    background-color: #ffb6c1;
+    border: none;
+}
+
+.btn-pink:hover {
+    background-color: #ff99aa;
+}
+
+.text-primary {
+    color: #e75480 !important;
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+}

@@ -1,0 +1,143 @@
+/* ===============================
+   Body & Background
+=============================== */
+body {
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.overlay {
+    display: none; /* can be used for modals or loading screens */
+}
+
+/* ===============================
+   Navbar
+=============================== */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffc107 !important;
+    font-weight: bold;
+}
+
+/* ===============================
+   Flash Messages
+=============================== */
+.alert {
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+.btn-close {
+    padding: 0.2rem 0.5rem;
+}
+
+/* ===============================
+   Table Styling
+=============================== */
+.table {
+    background-color: #ffffff;
+    border-radius: 0.3rem;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table thead th {
+    text-align: center;
+}
+
+/* Hover effect on rows */
+.table tbody tr:hover {
+    background-color: #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+/* Small text for amounts and notes */
+.table tbody td small {
+    font-size: 0.8rem;
+}
+
+/* ===============================
+   Badges
+=============================== */
+.badge {
+    font-size: 0.85rem;
+    padding: 0.35em 0.6em;
+    border-radius: 0.25rem;
+}
+
+/* ===============================
+   Buttons
+=============================== */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* ===============================
+   Table Shadow
+=============================== */
+.shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+}
+
+/* ===============================
+   Responsive Adjustments
+=============================== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===============================
+   Container
+=============================== */
+.container {
+    padding: 1.5rem;
+}
+
+/* ===============================
+   Misc
+=============================== */
+h2.mb-4 {
+    color: #343a40;
+    font-weight: 600;
+}

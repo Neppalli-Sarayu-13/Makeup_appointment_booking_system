@@ -1,0 +1,113 @@
+{% extends "user_base.html" %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='user_booking.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<h2 class="text-center my-4">Book Appointment</h2>
+
+<div class="form-container">
+  <form method="POST" action="{{ url_for('user_booking') }}" id="bookingForm">
+
+    <input type="text" name="customer_name" placeholder="Customer Name" required>
+    <input type="email" name="customer_email" placeholder="Email" required>
+    <input type="text" name="customer_phone" placeholder="Phone Number" required>
+
+    <select name="service_id" id="service" required onchange="updatePrice()">
+      <option value="">Select Makeup Type</option>
+      {% for s in services %}
+        <option value="{{ s.service_id }}" data-price="{{ s.price }}">
+          {{ s.service_name }} - ₹{{ s.price }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <input type="date" name="booking_date" required>
+    <input type="time" name="booking_time" required>
+
+    <input type="text" name="venue" placeholder="Venue / Location">
+    <textarea name="notes" placeholder="Additional Notes"></textarea>
+    <input type="hidden" name="advance_amount" id="advance_input">
+    <select name="payment_method" id="payment_method" onchange="handlePayment()" required>
+      <option value="">Select Payment Method</option>
+      <option value="advance">Pay Advance</option>
+      <option value="later">Pay Later</option>
+    </select>
+
+    <!-- Payment Section (hidden for Pay Later) -->
+    <div id="paymentBox" style="display:none;">
+      <h4>Payment Summary</h4>
+      <p>Total: ₹<span id="total">0</span></p>
+      <p>Advance (20%): ₹<span id="advance">0</span></p>
+      <p id="remainingRow">Remaining: ₹<span id="remaining">0</span></p>
+      <hr>
+      <h5>Choose Payment Option</h5>
+      <div class="payment-options">
+        <label><input type="radio" name="pay_option" value="upi" onclick="enablePayNow()"> UPI</label>
+        <label><input type="radio" name="pay_option" value="card" onclick="enablePayNow()"> Card</label>
+        <label><input type="radio" name="pay_option" value="netbanking" onclick="enablePayNow()"> Net Banking</label>
+      </div>
+    </div>
+
+    <!-- Book Appointment / Pay Now -->
+    <button type="submit" id="payNowBtn">Book Appointment</button>
+  </form>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+let selectedPrice = 0;
+
+// Update service price when dropdown changes
+function updatePrice(){
+    let service = document.getElementById("service");
+    let option = service.options[service.selectedIndex];
+    selectedPrice = parseFloat(option.dataset.price) || 0;
+}
+
+// Handle payment method selection
+function handlePayment(){
+    let method = document.getElementById("payment_method").value;
+    let paymentBox = document.getElementById("paymentBox");
+    let payNowBtn = document.getElementById("payNowBtn");
+
+    if(method === "advance"){
+        let advance = selectedPrice * 0.2;
+        document.getElementById("advance_input").value = advance.toFixed(2);
+        let remaining = selectedPrice - advance;
+
+        paymentBox.style.display = "block";
+        document.getElementById("total").innerText = selectedPrice.toFixed(2);
+        document.getElementById("advance").innerText = advance.toFixed(2);
+        document.getElementById("remaining").innerText = remaining.toFixed(2);
+        document.getElementById("remainingRow").style.display = "block";
+
+        // Disable button until payment option selected
+        payNowBtn.disabled = true;
+    }
+    else if(method === "later"){
+        paymentBox.style.display = "none";
+        payNowBtn.disabled = false; // immediately clickable
+    }
+    else {
+        paymentBox.style.display = "none";
+        payNowBtn.disabled = true;
+    }
+}
+
+// Enable button when payment option selected (advance)
+function enablePayNow(){
+    let selectedOption = document.querySelector('input[name="pay_option"]:checked');
+    let payNowBtn = document.getElementById("payNowBtn");
+    if(selectedOption){
+        payNowBtn.disabled = false;
+    }
+}
+
+
+
+</script>
+
+{% endblock %}

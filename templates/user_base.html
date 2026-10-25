@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}User{% endblock %}</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='user_dashboard.css') }}">
+{% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+{% for category, message in messages %}
+<div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% endwith %}
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+    <div class="logo">Lakshmi Makeovers</div>
+
+    <ul class="nav-links">
+        <li><a href="{{ url_for('user_dashboard') }}">Home</a></li>
+        <li><a href="{{ url_for('user_services') }}">Services</a></li>
+        <li><a href="{{url_for('user_gallery')}}">Gallery</a></li>
+        <li><a href="{{url_for('user_booking')}}">Booking</a></li>
+        <li><a href="{{url_for('view_booking')}}">My Bookings</a></li>
+        <li><a href="{{url_for('about_us')}}">About</a></li>
+        <li><a href="{{url_for('contact')}}">Contact</a></li>
+        <li><a href="{{ url_for('user_logout') }}" class="logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- ================= PAGE CONTENT ================= -->
+{% block content %}{% endblock %}
+
+</body>
+</html>

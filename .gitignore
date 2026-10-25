@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+*.sql
+*.cnf
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+flask_session/

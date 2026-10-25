@@ -1,0 +1,89 @@
+/* admin_dashboard.css */
+
+/* Full-page background */
+body {
+    background: url('/static/images/dashboard-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+/* Overlay to dim background for readability */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.85); /* Light overlay for contrast */
+    z-index: -1;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: rgba(111, 66, 193, 0.9); /* semi-transparent purple */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.navbar-brand {
+    font-weight: bold;
+    color: #fff;
+}
+.navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+/* Cards for stats */
+.card-stats {
+    border-left: 5px solid #6f42c1; /* Purple accent */
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent card */
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+.card-stats:hover {
+    transform: scale(1.02);
+}
+
+/* Card headings */
+.card-stats h6 {
+    font-weight: 600;
+    color: #6c757d;
+}
+
+/* Card numbers */
+.card-stats h3 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+/* Tables */
+.table {
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.table thead {
+    background-color: #6f42c1;
+    color: #fff;
+}
+.table tbody tr:hover {
+    background-color: rgba(111,66,193,0.1);
+}
+
+/* Chart cards */
+.card canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.card, .table {
+    background-color: rgba(255,255,255,0.95); /* Slightly transparent */
+}
+/* Success / error messages */
+.success {
+    color: #28a745;
+}
+.error {
+    color: #dc3545;
+}

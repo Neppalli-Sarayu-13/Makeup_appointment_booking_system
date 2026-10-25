@@ -1,0 +1,87 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Admin Bookings - Lakshmi Makeovers{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_bookings.css') }}">
+{% endblock %}
+{% block content %}
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<h2 class="mb-4">All Bookings</h2>
+
+<table class="table table-bordered table-striped shadow">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Service</th>
+            <th>Date & Time</th>
+            <th>Contact</th>
+            <th>Venue</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for b in bookings %}
+        <tr>
+            <td>{{ b.booking_id }}</td>
+            <td>
+                <strong>{{ b.customer_name }}</strong><br>
+                <small>{{ b.customer_email }}</small>
+            </td>
+            <td>{{ b.service_name }}</td>
+            <td>
+                {{ b.booking_date }}<br>
+                <small>{{ b.booking_time }}</small>
+            </td>
+            <td>{{ b.customer_phone }}</td>
+            <td>{{ b.venue }}</td>
+            <td>
+                ₹{{ b.total_price }}<br>
+                <small class="text-success">Adv: ₹{{ b.advance_amount }}</small><br>
+                <small class="text-danger">Bal: ₹{{ b.remaining_amount }}</small>
+            </td>
+            <td>
+                {% if b.status == 'Pending' %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                {% elif b.status == 'Approved' %}
+                    <span class="badge bg-success">Approved</span>
+                {% elif b.status == 'Completed' %}
+                    <span class="badge bg-primary">Completed</span>
+                {% else %}
+                    <span class="badge bg-danger">Cancelled</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if b.status == 'Pending' %}
+                    <a href="{{ url_for('approve_booking', booking_id=b.booking_id) }}" class="btn btn-success btn-sm">Approve</a>
+                    <a href="{{ url_for('cancel_booking', booking_id=b.booking_id) }}" class="btn btn-danger btn-sm">Cancel</a>
+                {% elif b.status == 'Approved' %}
+                    <a href="{{ url_for('complete_booking', booking_id=b.booking_id) }}" class="btn btn-primary btn-sm">Complete</a>
+                {% else %}
+                    <span class="text-muted">No Action</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="9" class="text-center text-muted">No bookings found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

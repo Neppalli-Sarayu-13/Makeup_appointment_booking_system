@@ -1,0 +1,57 @@
+/* login_prompt.css */
+
+/* Body styling */
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, #ffe4e6, #fff1f5);
+    margin: 0;
+    padding: 0;
+}
+
+/* Centered container styling */
+.text-center {
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+}
+
+/* Heading style */
+.text-center h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #d63384;
+    font-size: 1.6rem;
+}
+
+/* Buttons styling */
+.text-center .btn {
+    font-weight: 500;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+/* Login button */
+.text-center .btn-primary {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+
+.text-center .btn-primary:hover {
+    background-color: #5936a3;
+    border-color: #5936a3;
+}
+
+/* Sign Up button */
+.text-center .btn-success {
+    background-color: #e83e8c;
+    border-color: #e83e8c;
+}
+
+.text-center .btn-success:hover {
+    background-color: #c92c6c;
+    border-color: #c92c6c;
+}

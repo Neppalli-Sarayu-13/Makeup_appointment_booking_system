@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pay Advance - Lakshmi Makeovers</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='booking_payment.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Pay Advance for Your Appointment</h2>
+    <p class="amount">Advance Amount: ₹{{ advance_amount }}</p>
+
+    <div class="booking-details">
+        <h4>Booking Details</h4>
+        <ul>
+            <li><strong>Name:</strong> {{ customer_name }}</li>
+            <li><strong>Email:</strong> {{ customer_email }}</li>
+            <li><strong>Phone:</strong> {{ customer_phone }}</li>
+            <li><strong>Date:</strong> {{ booking_date }}</li>
+            <li><strong>Time:</strong> {{ booking_time }}</li>
+            <li><strong>Venue:</strong> {{ venue }}</li>
+            <li><strong>Service:</strong> {{ service_name }}</li>
+        </ul>
+    </div>
+
+    <button id="payButton">Pay Now via UPI / Card / Netbanking</button>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+const options = {
+    "key": "rzp_test_SHy3zlzWZXNg3W",
+    "amount": "{{ order.amount }}", // in paise
+    "currency": "{{ order.currency }}",
+    "name": "Lakshmi Makeovers",
+    "description": "Advance Payment for Appointment",
+    "order_id": "{{ order['id'] }}",  // Corrected
+
+    "modal": {
+        "ondismiss": function(){
+            alert("Payment cancelled!");
+            window.location.href = "/user_booking";
+        }
+    },
+    "handler": function (response) {
+        console.log("PAYMENT SUCCESS RESPONSE:", response);
+
+        fetch('/booking_payment_success', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature,
+
+                customer_name: "{{ customer_name }}",
+                customer_email: "{{ customer_email }}",
+                customer_phone: "{{ customer_phone }}",
+                service_id: "{{ service_id }}",
+                booking_date: "{{ booking_date }}",
+                booking_time: "{{ booking_time }}",
+                venue: "{{ venue }}",
+                notes: "{{ notes }}",
+                advance_amount: "{{ advance_amount }}"
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("SERVER RESPONSE:", data);
+
+            if (data.status === 'ok') {
+                alert("Payment Successful & Booking Confirmed!");
+                window.location.href = "/user_dashboard";
+            } else {
+                alert("Payment verification failed!");
+            }
+        });
+    },
+
+    "theme": {"color": "#F37254"}
+};
+
+const rzp = new Razorpay(options);
+
+rzp.on('payment.failed', function (response){
+    console.log(response.error);
+    alert("Payment Failed: " + response.error.description);
+});
+
+document.getElementById('payButton').onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+};
+</script>
+
+</body>
+</html>

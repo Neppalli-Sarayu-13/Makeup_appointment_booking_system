@@ -1,0 +1,6 @@
+Flask
+Flask-Session
+Flask-Bcrypt
+razorpay
+mysql-connector-python
+cryptography

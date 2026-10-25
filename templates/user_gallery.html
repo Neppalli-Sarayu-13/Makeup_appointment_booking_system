@@ -1,0 +1,17 @@
+{% extends "user_base.html" %}
+{% block title %}Gallery - Lakshmi Makeovers{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='user_gallery.css') }}">
+{% endblock %}
+{% block content %}
+<h2 class="text-center my-4">Makeup Gallery</h2>
+
+<div class="gallery-grid">
+    {% for img in images %}
+    <div class="gallery-item">
+        <img src="{{ url_for('static', filename=img.image_url) }}">
+        <p>{{ img.title }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "admin_base.html" %}
+
+{% block title %}View Booking - Lakshmi Makeovers{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+<style>
+    .booking-details {
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .booking-details h2 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #343a40;
+    }
+    .booking-details ul {
+        list-style: none;
+        padding: 0;
+    }
+    .booking-details li {
+        padding: 10px 0;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .booking-details li strong {
+        width: 150px;
+        display: inline-block;
+        color: #495057;
+    }
+    .action-buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .action-buttons a, .action-buttons form button {
+        margin: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="booking-details">
+    <h2>Booking Details</h2>
+    <ul>
+        <li><strong>Booking ID:</strong> {{ booking.booking_id }}</li>
+        <li><strong>Customer Name:</strong> {{ booking.customer_name }}</li>
+        <li><strong>Email:</strong> {{ booking.customer_email }}</li>
+        <li><strong>Phone:</strong> {{ booking.customer_phone }}</li>
+        <li><strong>Service:</strong> {{ booking.service_name }}</li>
+        <li><strong>Date:</strong> {{ booking.booking_date }}</li>
+        <li><strong>Time:</strong> {{ booking.booking_time }}</li>
+        <li><strong>Venue:</strong> {{ booking.venue }}</li>
+        <li><strong>Notes:</strong> {{ booking.notes or 'N/A' }}</li>
+        <li><strong>Payment Method:</strong> {{ booking.payment_method }}</li>
+        <li><strong>Advance Paid:</strong> ₹{{ booking.advance_amount or '0' }}</li>
+        <li><strong>Status:</strong> {{ booking.status }}</li>
+        <li><strong>Created At:</strong> {{ booking.created_at }}</li>
+    </ul>
+
+    <div class="action-buttons">
+        {% if booking.status != 'Approved' %}
+        <form method="POST" action="{{ url_for('approve_appointment', booking_id=booking.booking_id) }}" style="display:inline-block;">
+            <button type="submit" class="btn btn-success">Approve</button>
+        </form>
+        {% endif %}
+        {% if booking.status != 'Cancelled' %}
+        <form method="POST" action="{{ url_for('cancel_appointment', booking_id=booking.booking_id) }}" style="display:inline-block;">
+            <button type="submit" class="btn btn-danger">Cancel</button>
+        </form>
+        {% endif %}
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

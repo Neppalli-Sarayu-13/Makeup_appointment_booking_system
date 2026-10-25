@@ -1,0 +1,97 @@
+/* ===============================
+   Page Title
+=============================== */
+h2 {
+    text-align: center;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ===============================
+   Form Container
+=============================== */
+.form-container {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #ffffff;
+    padding: 5%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+}
+
+/* ===============================
+   Inputs & Fields
+=============================== */
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #ff4d6d;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 77, 109, 0.3);
+}
+
+/* ===============================
+   Button
+=============================== */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-container button:hover {
+    background: #e63950;
+}
+
+/* ===============================
+   Payment Box
+=============================== */
+#paymentBox {
+    background: #f9f9f9;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px dashed #ccc;
+}
+
+#paymentBox {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.payment-options {
+    display: flex;
+    gap: 15px;
+}
+
+/* ===============================
+   Responsive
+=============================== */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px;
+    }
+}

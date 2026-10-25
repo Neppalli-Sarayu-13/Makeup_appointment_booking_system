@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='otpverify.css') }}">
+</head>
+
+<body>
+
+<div class="otp-container">
+
+    <h2>Verify Your OTP</h2>
+    <p>Please enter the OTP sent to your email</p>
+
+    <form method="POST">
+
+        <input type="text" name="otp" id="otp" placeholder="Enter OTP" required>
+
+        <button type="submit">Verify OTP</button>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <p style="color:red">{{ messages[0] }}</p>
+        {% endif %}
+        {% endwith %}
+    </form>
+
+    <p class="resend">
+        Didn't receive OTP?
+        <a href="#">Resend</a>
+    </p>
+
+</div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(e){
+
+    let otp = document.getElementById("otp").value;
+
+    if(otp.length != 6){
+        alert("OTP must be 6 digits");
+        e.preventDefault();
+    }
+
+});
+</script>
+
+</body>
+</html>

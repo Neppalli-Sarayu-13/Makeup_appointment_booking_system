@@ -1,0 +1,101 @@
+{% extends "user_base.html" %}
+
+{% block title %}About Us - Lakshmi Makeovers{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='about_us.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ================= ABOUT US HEADER ================= -->
+<section class="about-header">
+    <h1>About Us</h1>
+    <p>Your Beauty, Our Passion</p>
+</section>
+
+<!-- ================= MAKEUP ARTIST INTRO ================= -->
+<section class="about-container">
+    <div class="about-content">
+
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='images/Makeup_artist.jpeg') }}" alt="Makeup Artist">
+        </div>
+
+        <div class="about-text">
+            <h2>Meet Our Artist</h2>
+            <p>
+                Welcome to <strong>Lakshmi Makeovers</strong>! 
+                I'm Lakshmi from Vijayawada. 
+                I am a professional makeup artist with 15+ years of experience in bridal, party, and fashion makeup.
+            </p>
+            <p>
+                My goal is to enhance your natural beauty and make you feel confident and radiant for your special moments.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services-section">
+    <h2>Our Services</h2>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>Bridal Makeup</h3>
+            <p>Elegant and long-lasting bridal looks for your big day.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Party Makeup</h3>
+            <p>Glamorous styles perfect for parties and events.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>HD Makeup</h3>
+            <p>High-definition makeup for flawless photos.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Hair Styling</h3>
+            <p>Beautiful hairstyles to complete your look.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="why-us">
+    <h2>Why Choose Us</h2>
+
+    <div class="why-grid">
+        <div class="why-card">💄 Professional Expertise</div>
+        <div class="why-card">✨ Premium Products</div>
+        <div class="why-card">😊 Customer Satisfaction</div>
+        <div class="why-card">⏰ On-Time Service</div>
+    </div>
+</section>
+
+<!-- ================= CLIENT REVIEWS ================= -->
+<section class="reviews-section">
+    <h2>Client Reviews</h2>
+
+    <div class="reviews-grid">
+        <div class="review-card">
+            <p>"Amazing work! I felt like a queen on my wedding day."</p>
+            <h4>- Priya</h4>
+        </div>
+
+        <div class="review-card">
+            <p>"Very professional and friendly. Highly recommended!"</p>
+            <h4>- Sneha</h4>
+        </div>
+
+        <div class="review-card">
+            <p>"Perfect makeup and long-lasting. Loved it!"</p>
+            <h4>- Anjali</h4>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

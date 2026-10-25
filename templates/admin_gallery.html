@@ -1,0 +1,58 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Admin Gallery - Lakshmi Makeovers{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_gallery.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-4">Gallery Management</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Upload Form -->
+    <div class="card mb-4 shadow-sm p-3">
+        <h5>Add New Image</h5>
+        <form method="POST" action="{{ url_for('admin_add_image') }}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="image_title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="image_title" name="image_title" required>
+            </div>
+            <div class="mb-3">
+                <label for="image_file" class="form-label">Select Image</label>
+                <input type="file" class="form-control" id="image_file" name="image_file" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="row g-3">
+        {% for img in gallery %}
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename=img['image_url']) }}" class="card-img-top" alt="{{ img['title'] }}">
+                <div class="card-body text-center">
+                    <h6 class="card-title">{{ img.title }}</h6>
+                    <a href="{{ url_for('admin_delete_image', image_id=img['image_id']) }}" class="btn btn-danger btn-sm mt-2">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-muted">No images found in gallery.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
